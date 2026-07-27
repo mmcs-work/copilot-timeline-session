@@ -1,0 +1,8 @@
+.vscode/**
+.github/**
+docs/**
+node_modules/**
+*.ts
+tsconfig.json
+*.vsix
+out/timeline-hook.js

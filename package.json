@@ -1,0 +1,91 @@
+{
+  "name": "copilot-timeline",
+  "displayName": "Copilot Timeline Session",
+  "description": "Turn GitHub Copilot agent work into Git checkpoints, reviewable diffs, and one final squash commit.",
+  "version": "0.3.11",
+  "publisher": "weekend-project",
+  "engines": {
+    "vscode": "^1.129.0"
+  },
+  "categories": [
+    "SCM Providers",
+    "Other"
+  ],
+  "keywords": [
+    "github copilot",
+    "copilot",
+    "git",
+    "checkpoints",
+    "timeline",
+    "review"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mmcs-work/copilot-timeline-session.git"
+  },
+  "homepage": "https://mmcs-work.github.io/copilot-timeline-session/",
+  "bugs": {
+    "url": "https://github.com/mmcs-work/copilot-timeline-session/issues"
+  },
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:copilotTimeline.start",
+    "onCommand:copilotTimeline.finish",
+    "onCommand:copilotTimeline.open"
+  ],
+  "main": "./out/extension.js",
+  "extensionDependencies": [
+    "GitHub.copilot-chat"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "copilotTimeline.start",
+        "title": "Start Copilot Session"
+      },
+      {
+        "command": "copilotTimeline.finish",
+        "title": "Finish Copilot Session"
+      },
+      {
+        "command": "copilotTimeline.open",
+        "title": "Open Copilot Session"
+      }
+    ],
+    "configuration": {
+      "title": "Copilot Timeline Session",
+      "properties": {
+        "copilotTimeline.deleteBranchWhenFinished": {
+          "type": "boolean",
+          "default": true,
+          "description": "Delete the temporary Copilot session branch after a successful finish."
+        },
+        "copilotTimeline.capturePrompts": {
+          "type": "boolean",
+          "default": true,
+          "description": "Save submitted Copilot prompts for checkpoint hover details. Prompts can contain sensitive information."
+        },
+        "copilotTimeline.captureResponses": {
+          "type": "boolean",
+          "default": true,
+          "description": "Save a best-effort final Copilot response for checkpoint hover details. Responses can contain sensitive information."
+        },
+        "copilotTimeline.generateCommitMessages": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use GitHub Copilot to generate commit messages from staged changes."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.100.0",
+    "typescript": "^5.8.0"
+  }
+}
